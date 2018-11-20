@@ -21,7 +21,7 @@ and open the template in the editor.
                 <p>Juega a tu simulador de equipos fantasia<br />
                 <ul class="actions">
                     <li><a href="#footer" class="button icon fa-chevron-down scrolly">Nuestras Redes Sociales</a></li>
-                    <li><a href="#" class="button icon">Jugar DRAFT</a></li>
+                    <li><a href="juego.php" class="button icon">Jugar DRAFT</a></li>
                 </ul>
             </div>
             <div class="image phone"><div class="inner"><img src="images/nba-logo.png" alt="" /></div></div>
