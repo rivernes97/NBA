@@ -8,6 +8,7 @@ and open the template in the editor.
 
 ////capturo los valores de los parámetros que me han sido pasados
 ////desde app.php
+    
 include ('funciones.php');
 
 $mysqli = conectaBBDD();
@@ -44,50 +45,111 @@ $listaJugadores = array();
         $listaJugadores[$i][7] = $r5['media'];
         
         
+        $listaJugadores[$i][4] = $r['nacionalidad'];
+        $listaJugadores[$i][4] = $r2['nacionalidad'];
+        $listaJugadores[$i][4] = $r3['nacionalidad'];
+        $listaJugadores[$i][4] = $r4['nacionalidad'];
+        $listaJugadores[$i][4] = $r5['nacionalidad'];
+        
+        $listaJugadores[$i][5] = $r['conferencia'];
+        $listaJugadores[$i][5] = $r2['conferencia'];
+        $listaJugadores[$i][5] = $r3['conferencia'];
+        $listaJugadores[$i][5] = $r4['conferencia'];
+        $listaJugadores[$i][5] = $r5['conferencia'];
+        
+        
+         $listaJugadores[$i][6] = $r['posicion'];
+        $listaJugadores[$i][6] = $r2['posicion'];
+        $listaJugadores[$i][6] = $r3['posicion'];
+        $listaJugadores[$i][6] = $r4['posicion'];
+        $listaJugadores[$i][6] = $r5['posicion'];
+        
+        
+        
         $listaJugadores[$i][0] = $r['nombre'];
         $listaJugadores[$i][1] = $r['id_equipo']; 
         $listaJugadores[$i][2] = $r['id_jugador']; 
-        $listaJugadores[$i][4] = $r['nacionalidad']; 
-        $listaJugadores[$i][5] = $r['conferencia']; 
-        $listaJugadores[$i][6] = $r['posicion'];
-        $listaJugadores[$i][7] = $r['media'];
+        
+        
+     
    }
+ 
+    $numeros = [$r['media'],$r2['media'],$r3['media'],$r4['media'],$r5['media']];
+   
+    $suma = 0;
+    
+    for ($x=0;$x<count($numeros);$x++){
+        $suma += $numeros[$x];
+    }
+    
+    $suma = array_sum($numeros);
+    
+    $total_numeros = count($numeros);
+ 
+    $media = $suma/$total_numeros;
+        
+    $media = array_sum($numeros)/count($numeros);
+
+               
+              
+   
+   
+   
+   
+   
+  
+?>
+ 
+           
+      
+              
+           
+   
+   
     
  
 
-?>
+
 <html>
     <head>
-        <meta charset="UTF-8">
+        
+        <meta charset="utf-8" />
+        
         <title>NBA DRAFT</title>
 
     </head>
 
-    <body id="hola">
+    <body class="hola">
+   
+    <?php echo $r['posicion']; ?>
 
+        <hr class="hr1" />
+        <hr class="hr2" />
+        <hr class="hr3" />
+        <div class="valor"><strong>Valoracion</strong><div id="Media" class="numval"><strong><?php echo $media; ?>*</strong></div></div>
+        <div id="EnBase" class="EncabezadoBase" style="position: absolute; color: #000;">Base</div>
+        <div id="EnBase" class="EncabezadoAlero" style="position: absolute; color: #000;">Suplente</div>
+        <div id="EnBase" class="EncabezadoEscolta" style="position: absolute; color: #000;">Alero</div>
+        <div id="EnBase" class="EncabezadoPivot" style="position: absolute; color: #000;">Ala-Pivot</div>
+        <div id="EnBase" class="EncabezadoAlaPivot" style="position: absolute; color: #000;">Escolta</div>
+        <div id="EnBase" class="EncabezadoSuplente" style="position: absolute; color: #000;">Pivot</div>
+        <div id="Ala-Pivot"  class="tela" style="position:absolute; color: #000;  " ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
+        <div id="Base"  class="tela1" style="position:absolute; color: #000; float:left "ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
+        <div id="Pivot" class="tela2" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
+        <div id="Alero" class="tela3" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
+        <div id="Escolta" class="tela4" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
+        <div id="Suplente" class="tela5" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
+      
        
-    
 
-        <hr id="hr1" />
-        <hr id="hr2" />
-        <hr id="hr3" />
-        <div id="valor"><strong>Valoracion</strong><div id="numval"><strong>80 *</strong></div></div>
-        <div id="tela" style="position:absolute; color: #000;  " ondragover="evdragover(event)" ondrop="evdrop(event)"><strong>Ala-Pivot</strong></div>
-        <div id="tela1" style="position:absolute; color: #000; float:left "ondragover="evdragover(event)" ondrop="evdrop(event)"><strong>Base</strong></div>
-        <div id="tela2" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"><strong>Pivot</strong></div>
-        <div id="tela3" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"><strong>Alero</strong></div>
-        <div id="tela4" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"><strong>Escolta</strong></div>
-        <div id="tela5" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"><strong>Suplente</strong></div>
-
-
-        <div id="arrastrar" draggable="true" ondragstart="evdragstart(event)"></div>
-        <div id="arrastrar1" draggable="true" ondragstart="evdragstart(event)"></div>
-        <div id="arrastrar2" draggable="true" ondragstart="evdragstart(event)"></div>
-        <div id="arrastrar3" draggable="true" ondragstart="evdragstart(event)"></div>
-        <div id="arrastrar4" draggable="true" ondragstart="evdragstart(event)"></div>
+        <div id="Jugador1" class="arrastrar" draggable="true" ondragstart="evdragstart(event)"></div>
+        <div id="Jugador2"  class="arrastrar1"draggable="true" ondragstart="evdragstart(event)"></div>
+        <div id="Jugador3" class="arrastrar2" draggable="true" ondragstart="evdragstart(event)"></div>
+        <div id="Jugador4" class="arrastrar3" draggable="true" ondragstart="evdragstart(event)"></div>
+        <div id="Jugador5" class="arrastrar4" draggable="true" ondragstart="evdragstart(event)"></div>
  
 
-
+        
         <?php
         echo '';
         ?>
@@ -96,7 +158,7 @@ $listaJugadores = array();
 
 <style>
 
-    #arrastrar {
+    .arrastrar {
         text-align:center;
         width:150px;
         height:220px;
@@ -109,7 +171,7 @@ $listaJugadores = array();
         background-image: url("images/jugadores/<?php echo $r['imagen']; ?>");
 
     }
-    #arrastrar1 {
+    .arrastrar1 {
         text-align:center;
         width:150px;
         height:220px;
@@ -122,7 +184,7 @@ $listaJugadores = array();
         background-image: url("images/jugadores/<?php echo $r2['imagen']; ?>");
 
     }
-    #arrastrar2{
+    .arrastrar2{
         text-align:center;
         width:150px;
         height:220px;
@@ -135,7 +197,7 @@ $listaJugadores = array();
         background-image: url("images/jugadores/<?php echo $r3['imagen']; ?>");
 
     }
-    #arrastrar3 {
+    .arrastrar3 {
         text-align:center;
         width:150px;
         height:220px;
@@ -148,7 +210,7 @@ $listaJugadores = array();
         background-image: url("images/jugadores/<?php echo $r4['imagen']; ?>");
 
     }
-    #arrastrar4 {
+    .arrastrar4 {
         text-align:center;
         width:150px;
         height:220px;
@@ -162,7 +224,7 @@ $listaJugadores = array();
 
     }
 
-    #valor{
+    .valor{
         background-color: white;
         text-decoration: #ffffff;
         text-align: center;
@@ -173,72 +235,139 @@ $listaJugadores = array();
         top: 0px;
         position: absolute;
     }
-    #numval{
+    .numval{
         font-size: 40px;
     }
 
-    #tela{
+    .tela{
         background-color: white;
         text-decoration: #ffffff;
         text-align: center;
         width:150px;
-        height:240px;
-        border: 5px solid #000;
+        height:220px;
+        
         left: 430px;
         top: 87px;
     }
-    #tela1{
+    .EncabezadoSuplente{
+        background-color: white;
+        text-decoration: #ffffff;
+        text-align: center;
+        width:150px;
+        height:22px;
+        
+        left: 430px;
+        top: 65px;
+    }
+    .tela1{
         background-color: white;
         text-align: center;
         width:150px;
-        height:240px;
-        border: 5px solid #000;
+        height:220px;
+       
         left: 641px;
         top: 458px;
     }
-    #tela2{
+    .EncabezadoBase{
         background-color: white;
         text-align: center;
         width:150px;
-        height:240px;
-        border: 5px solid #000;
+        height:22px;
+       
+        left: 641px;
+        top: 436px;
+    }
+    .tela2{
+        background-color: white;
+        text-align: center;
+        width:150px;
+        height:220px;
+       
         right: 430px;
         top: 87px;
     }
-    #tela3{
+    .EncabezadoPivot{
         background-color: white;
         text-align: center;
         width:150px;
-        height:240px;
-        border: 5px solid #000;
+        height:22px;
+       
+        right: 430px;
+        top: 65px;
+    }
+    .tela3{
+        background-color: white;
+        text-align: center;
+        width:150px;
+        height:220px;
+      
         right: 240px;
         top: 351px;
     }
-    #tela4{
+    .EncabezadoAlaPivot{
         background-color: white;
         text-align: center;
         width:150px;
-        height:240px;
-        border: 5px solid #000;
+        height:22px;
+      
+        right: 240px;
+        top: 329px;
+    }
+    .tela4{
+        background-color: white;
+        text-align: center;
+        width:150px;
+        height:220px;
+        
         left: 240px;
         top: 351px;
     }
-    #tela5{
+    .EncabezadoEscolta{
         background-color: white;
         text-align: center;
         width:150px;
-        height:240px;
-        border: 5px solid #000;
+        height:22px;
+        
+        left: 240px;
+        top: 329px;
+    }
+    .tela5{
+        background-color: white;
+        text-align: center;
+        width:150px;
+        height:220px;
+       
+        right: 0px;
+        top: 22px;
+    }
+    .EncabezadoAlero{
+        background-color: white;
+        text-align: center;
+        width:150px;
+        height:22px;
+       
         right: 0px;
         top: 0px;
     }
-    #hola{
+  
+    .hola{
         background-color: #990099;
         background-image: url("images/lakersstadium(1).jpg");
         background-repeat: no-repeat;
         background-position: top center;
     }
-    #hr1 {
+     .cambio{
+        background-color: white;
+        text-align: center;
+        width:150px;
+        height:240px;
+        border: 20px solid #3FFF33;
+        right: 430px;
+        top: 87px;
+        
+    }
+    
+    .hr1 {
         height: 4px;
         background-color: red;
         position:absolute;
@@ -247,7 +376,7 @@ $listaJugadores = array();
         top: 464px;
         height: 5px;
     }
-    #hr2 {
+    .hr2 {
         height: 4px;
         background-color: red;
         position:absolute;
@@ -256,7 +385,16 @@ $listaJugadores = array();
         top: 464px;
         height: 5px;
     }
-    #hr3 {
+    .borde-rojo {
+    border-color: red;
+    border-style: double;
+}
+
+.borde-azul {
+    border-color: blue;
+    border-style: double;
+}
+    .hr3 {
         height: 4px;
         background-color: red;
         position:absolute;
@@ -269,28 +407,62 @@ $listaJugadores = array();
 
 </style>
 <script>
-
+   
     function evdragstart(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
     }
     function evdragover(ev) {
         ev.preventDefault();
+        
     }
     function evdrop(ev, el) {
+     
         ev.stopPropagation();
         ev.preventDefault();
         data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
+        
+ 
+
+     comprobarQuimica();
+     
+          
+         
+    
+    
+    
+
+
+        
+
+     
+     }
+     
+     
+     function comprobarQuimica(){
+       
+            var elemento = document.getElementById('Jugador1');
+    var posicion = elemento.getBoundingClientRect();
+    
+      var elemento1 = document.getElementById('Base');
+    var posicion1 = elemento1.getBoundingClientRect();
+    var posJugador1 = posicion.top + posicion.right+ posicion.bottom + posicion.left;
+     var posArrastrar1 = posicion1.top + posicion1.right+ posicion1.bottom + posicion1.left;
+    
+         if((posJugador1 == posArrastrar1) && ("<?php echo $r['posicion'];?>"  == "Base")){
+           
+             document.getElementById('EnBase').style.color = '#FF0000' ;
+             
+         }
+          
+
+         
+         
+     
+              
+           
+      
     }
-    function calculaNumeroPregunta(){
-        return Math.floor(Math.random() * listaJugadores.length) ;
-    }
-
-
-
-
-
-
 
 
 
