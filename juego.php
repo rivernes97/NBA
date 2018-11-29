@@ -122,24 +122,25 @@ $listaJugadores = array();
     <body class="hola">
    
     <?php echo $r['posicion']; ?>
+          
 
         <hr class="hr1" />
         <hr class="hr2" />
         <hr class="hr3" />
         <div class="valor"><strong>Valoracion</strong><div id="Media" class="numval"><strong><?php echo $media; ?>*</strong></div></div>
         <div id="EnBase" class="EncabezadoBase" style="position: absolute; color: #000;">Base</div>
-        <div id="EnBase" class="EncabezadoAlero" style="position: absolute; color: #000;">Suplente</div>
-        <div id="EnBase" class="EncabezadoEscolta" style="position: absolute; color: #000;">Alero</div>
-        <div id="EnBase" class="EncabezadoPivot" style="position: absolute; color: #000;">Ala-Pivot</div>
-        <div id="EnBase" class="EncabezadoAlaPivot" style="position: absolute; color: #000;">Escolta</div>
-        <div id="EnBase" class="EncabezadoSuplente" style="position: absolute; color: #000;">Pivot</div>
+        <div id="EnSuplente" class="EncabezadoAlero" style="position: absolute; color: #000;">Suplente</div>
+        <div id="EnEscolta" class="EncabezadoEscolta" style="position: absolute; color: #000;">Escolta</div>
+        <div id="EnPivot" class="EncabezadoPivot" style="position: absolute; color: #000;">Pivot</div>
+        <div id="EnAlero" class="EncabezadoAlaPivot" style="position: absolute; color: #000;">Alero</div>
+        <div id="EnAla-Pivot" class="EncabezadoSuplente" style="position: absolute; color: #000;">Ala-Pivot</div>
         <div id="Ala-Pivot"  class="tela" style="position:absolute; color: #000;  " ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
         <div id="Base"  class="tela1" style="position:absolute; color: #000; float:left "ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
         <div id="Pivot" class="tela2" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
         <div id="Alero" class="tela3" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
         <div id="Escolta" class="tela4" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
         <div id="Suplente" class="tela5" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
-      
+       <!--<button onclick=""> comprobar</button>-->
        
 
         <div id="Jugador1" class="arrastrar" draggable="true" ondragstart="evdragstart(event)"></div>
@@ -424,8 +425,9 @@ $listaJugadores = array();
         
  
 
-     comprobarQuimica();
-     
+   
+    
+    comprobarQuimicaArrastrable1();
           
          
     
@@ -439,22 +441,116 @@ $listaJugadores = array();
      }
      
      
-     function comprobarQuimica(){
+     function comprobarQuimicaArrastrable1(){
        
-            var elemento = document.getElementById('Jugador1');
-    var posicion = elemento.getBoundingClientRect();
-    
-      var elemento1 = document.getElementById('Base');
-    var posicion1 = elemento1.getBoundingClientRect();
-    var posJugador1 = posicion.top + posicion.right+ posicion.bottom + posicion.left;
-     var posArrastrar1 = posicion1.top + posicion1.right+ posicion1.bottom + posicion1.left;
-    
-         if((posJugador1 == posArrastrar1) && ("<?php echo $r['posicion'];?>"  == "Base")){
+            var elemento = document.getElementById('Jugador1');    //Empiezo a guardar elementos para despues sacar sus posiciones
+            var elemento1 = document.getElementById('Base');
+            var elemento2 = document.getElementById('Jugador2');
+            var elemento3 = document.getElementById('Ala-Pivot');
+            var elemento4 = document.getElementById('Jugador3');
+            var elemento5 = document.getElementById('Alero');
+            var elemento6 = document.getElementById('Jugador4');
+            var elemento7= document.getElementById('Pivot');
+            var elemento8 = document.getElementById('Jugador5');
+            var elemento9 = document.getElementById('Escolta');
+            
+                      
+                    
            
-             document.getElementById('EnBase').style.color = '#FF0000' ;
-             
+    
+            
+            
+            
+            
+            var posJug1 = elemento.getBoundingClientRect();  //Guardo en una variable las coordenadas de la primera carta a arrastrar 
+            var posBase = elemento1.getBoundingClientRect(); //Guardo en una variable las coordenadas de la carta de base
+            var posJug2 = elemento2.getBoundingClientRect();
+            var posAlaPivot = elemento3.getBoundingClientRect();
+            var posJug3 = elemento4.getBoundingClientRect();
+            var posAlero = elemento5.getBoundingClientRect();
+            var posJug4 = elemento6.getBoundingClientRect();
+            var posPivot = elemento7.getBoundingClientRect();
+            var posJug5 = elemento8.getBoundingClientRect();
+            var posEscolta = elemento9.getBoundingClientRect();
+            
+            
+                        
+            
+            
+    
+            
+               var posArrastrar1 = posJug1.top + posJug1.right+ posJug1.bottom + posJug1.left;     
+               var posicionBase = posBase.top + posBase.right+ posBase.bottom + posBase.left;
+               var posArrastrar2 = posJug2.top + posJug2.right+ posJug2.bottom + posJug2.left;     
+               var posicionAlaPivot = posAlaPivot.top + posAlaPivot.right+ posAlaPivot.bottom + posAlaPivot.left;
+               var posArrastrar3 = posJug3.top + posJug3.right+ posJug3.bottom + posJug3.left;     
+               var posicionAlero= posAlero.top + posAlero.right+ posAlero.bottom + posAlero.left;
+               var posArrastrar4 = posJug4.top + posJug4.right+ posJug4.bottom + posJug4.left;     
+               var posicionPivot = posPivot.top + posPivot.right+ posPivot.bottom + posPivot.left;
+               var posArrastrar5 = posJug5.top + posJug5.right+ posJug5.bottom + posJug5.left;     
+               var posicionEscolta = posEscolta.top + posEscolta.right+ posEscolta.bottom + posEscolta.left;
+    
+    
+    
+      
+    
+              
+            
+    
+    
+         if((posicionBase == posArrastrar1) && ("<?php echo $r['posicion'];?>"  == "Base")){ //Comprueba si el primer jugador Arrastrable es Base y si es base  y esta en la posicion 
+                                                                                            
+                                                                                            //Se pone en verde el encabezado
+           
+             document.getElementById('EnBase').style.color = '#3FFF33' ;
+           
          }
-          
+         else{
+             document.getElementById('EnBase').style.color = '#000' ;
+         }
+           if((posicionAlaPivot == posArrastrar1) && ("<?php echo $r['posicion'];?>"  == "Ala-Pivot")){ //Comprueba si el primer jugador Arrastrable es Ala y si es ala y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnAla-Pivot').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnAla-Pivot').style.color = '#000' ;
+         }
+         
+           if((posicionPivot == posArrastrar1) && ("<?php echo $r['posicion'];?>"  == "Pivot")){ //Comprueba si el primer jugador Arrastrable es Pivot y si es pivot y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnPivot').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnPivot').style.color = '#000' ;
+         }
+         if((posicionAlero == posArrastrar1) && ("<?php echo $r['posicion'];?>"  == "Alero")){ //Comprueba si el primer jugador Arrastrable es Alero y si es alero y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnAlero').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnAlero').style.color = '#000' ;
+         }
+          if((posicionEscolta == posArrastrar1) && ("<?php echo $r['posicion'];?>"  == "Escolta")){ //Comprueba si el primer jugador Arrastrable es Escolta y si es Escolta y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnEscolta').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnEscolta').style.color = '#000' ;
+         }
+            
+         
 
          
          
@@ -463,7 +559,127 @@ $listaJugadores = array();
            
       
     }
+function comprobarQuimicaArrastrable2(){
+       
+            var elemento = document.getElementById('Jugador1');    //Empiezo a guardar elementos para despues sacar sus posiciones
+            var elemento1 = document.getElementById('Base');
+            var elemento2 = document.getElementById('Jugador2');
+            var elemento3 = document.getElementById('Ala-Pivot');
+            var elemento4 = document.getElementById('Jugador3');
+            var elemento5 = document.getElementById('Alero');
+            var elemento6 = document.getElementById('Jugador4');
+            var elemento7= document.getElementById('Pivot');
+            var elemento8 = document.getElementById('Jugador5');
+            var elemento9 = document.getElementById('Escolta');
+            
+            
+            
+            
+            
+           
+    
+            
+            
+            
+            
+            var posJug1 = elemento.getBoundingClientRect();  //Guardo en una variable las coordenadas de la primera carta a arrastrar 
+            var posBase = elemento1.getBoundingClientRect(); //Guardo en una variable las coordenadas de la carta de base
+            var posJug2 = elemento2.getBoundingClientRect();
+            var posAlaPivot = elemento3.getBoundingClientRect();
+            var posJug3 = elemento4.getBoundingClientRect();
+            var posAlero = elemento5.getBoundingClientRect();
+            var posJug4 = elemento6.getBoundingClientRect();
+            var posPivot = elemento7.getBoundingClientRect();
+            var posJug5 = elemento8.getBoundingClientRect();
+            var posEscolta = elemento9.getBoundingClientRect();
+            
+            
+            
+            
+            
+            
+    
+            
+               var posArrastrar1 = posJug1.top + posJug1.right+ posJug1.bottom + posJug1.left;     
+               var posicionBase = posBase.top + posBase.right+ posBase.bottom + posBase.left;
+               var posArrastrar2 = posJug2.top + posJug2.right+ posJug2.bottom + posJug2.left;     
+               var posicionAlaPivot = posAlaPivot.top + posAlaPivot.right+ posAlaPivot.bottom + posAlaPivot.left;
+               var posArrastrar3 = posJug3.top + posJug3.right+ posJug3.bottom + posJug3.left;     
+               var posicionAlero= posAlero.top + posAlero.right+ posAlero.bottom + posAlero.left;
+               var posArrastrar4 = posJug4.top + posJug4.right+ posJug4.bottom + posJug4.left;     
+               var posicionPivot = posPivot.top + posPivot.right+ posPivot.bottom + posPivot.left;
+               var posArrastrar5 = posJug5.top + posJug5.right+ posJug5.bottom + posJug5.left;     
+               var posicionEscolta = posEscolta.top + posEscolta.right+ posEscolta.bottom + posEscolta.left;
+    
+    
+    
+      
+    
+              
+            
+    
+    
+         if((posicionBase == posArrastrar2) && ("<?php echo $r2['posicion'];?>"  == "Base")){ //Comprueba si el primer jugador Arrastrable es Base y si es base  y esta en la posicion 
+                                                                                            
+                                                                                            //Se pone en verde el encabezado
+           
+             document.getElementById('EnBase').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnBase').style.color = '#000' ;
+         }
+           if((posicionAlaPivot == posArrastrar2) && ("<?php echo $r2['posicion'];?>"  == "Ala-Pivot")){ //Comprueba si el primer jugador Arrastrable es Ala y si es ala y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnAla-Pivot').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnAla-Pivot').style.color = '#000' ;
+         }
+         
+           if((posicionPivot == posArrastrar2) && ("<?php echo $r2['posicion'];?>"  == "Pivot")){ //Comprueba si el primer jugador Arrastrable es Pivot y si es pivot y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnPivot').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnPivot').style.color = '#000' ;
+         }
+         if((posicionAlero == posArrastrar2) && ("<?php echo $r2['posicion'];?>"  == "Alero")){ //Comprueba si el primer jugador Arrastrable es Alero y si es alero y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnAlero').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnAlero').style.color = '#000' ;
+         }
+          if((posicionEscolta == posArrastrar2) && ("<?php echo $r2['posicion'];?>"  == "Escolta")){ //Comprueba si el primer jugador Arrastrable es Escolta y si es Escolta y esta en la posicion 
+                                                                                            
+                                                                                                     //Se pone en verde el encabezado
+           
+             document.getElementById('EnEscolta').style.color = '#3FFF33' ;
+           
+         }
+         else{
+             document.getElementById('EnEscolta').style.color = '#000' ;
+         }
+            
+         
 
+         
+         
+     
+              
+           
+      
+    }
 
 
 // Inicializamos el movimiento del div con id "arrastrar"
