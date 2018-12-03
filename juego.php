@@ -12,11 +12,11 @@ and open the template in the editor.
 include ('funciones.php');
 
 $mysqli = conectaBBDD();
-$resultadoImagen = $mysqli -> query("SELECT * FROM jugadores order by rand() limit 1  ");
-$resultadoImagen2 = $mysqli -> query("SELECT * FROM jugadores order by rand() limit 1  ");
-$resultadoImagen3 = $mysqli -> query("SELECT * FROM jugadores order by rand() limit 1  ");
-$resultadoImagen4 = $mysqli -> query("SELECT * FROM jugadores order by rand() limit 1  ");
-$resultadoImagen5 = $mysqli -> query("SELECT * FROM jugadores order by rand() limit 1  ");
+$resultadoImagen = $mysqli -> query("SELECT * FROM jugadores Where posicion =  'Base' order by rand() limit 1  ");
+$resultadoImagen2 = $mysqli -> query("SELECT * FROM jugadores  Where posicion =  'Alero' order by rand() limit 1  ");
+$resultadoImagen3 = $mysqli -> query("SELECT * FROM jugadores  Where posicion =  'Escolta' order by rand() limit 1  ");
+$resultadoImagen4 = $mysqli -> query("SELECT * FROM jugadores Where posicion =  'Ala-Pivot'  order by rand() limit 1  ");
+$resultadoImagen5 = $mysqli -> query("SELECT * FROM jugadores Where posicion =  'Pivot' order by rand() limit 1  ");
 
 
 $numJugadores = $resultadoImagen -> num_rows;
@@ -140,11 +140,11 @@ $listaJugadores = array();
         <div id="Alero" class="tela3" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
         <div id="Escolta" class="tela4" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
         <div id="Suplente" class="tela5" style="position:absolute; color: #000;" ondragover="evdragover(event)" ondrop="evdrop(event)"></div>
-       <!--<button onclick=""> comprobar</button>-->
+        <button onclick="sacarJugadoresAlAzar()"> comprobar</button>
        
 
-        <div id="Jugador1" class="arrastrar" draggable="true" ondragstart="evdragstart(event)"></div>
-        <div id="Jugador2"  class="arrastrar1"draggable="true" ondragstart="evdragstart(event)"></div>
+        <div id="Jugador1" class="arrastrar" draggable="true"  ondragstart="evdragstart(event)"></div>
+        <div id="Jugador2"  class="arrastrar1"draggable="true" ondragstart="evdragstart(event)" ></div>
         <div id="Jugador3" class="arrastrar2" draggable="true" ondragstart="evdragstart(event)"></div>
         <div id="Jugador4" class="arrastrar3" draggable="true" ondragstart="evdragstart(event)"></div>
         <div id="Jugador5" class="arrastrar4" draggable="true" ondragstart="evdragstart(event)"></div>
@@ -404,9 +404,12 @@ $listaJugadores = array();
         top: 161px;
         height: 5px;
     }
+     
 
 
 </style>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
    
     function evdragstart(ev) {
@@ -422,14 +425,14 @@ $listaJugadores = array();
         ev.preventDefault();
         data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
-        
+  
  
 
    
     
-    comprobarQuimicaArrastrable1();
+    
           
-         
+         comprobarQuimicaArrastrable1();
     
     
     
@@ -439,6 +442,29 @@ $listaJugadores = array();
 
      
      }
+   
+         
+         
+      
+      
+
+} 
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+     
      
      
      function comprobarQuimicaArrastrable1(){
